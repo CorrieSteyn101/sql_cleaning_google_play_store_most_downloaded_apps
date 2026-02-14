@@ -1,5 +1,4 @@
 # Google Play Store Analytics
-Using SQL to clean a Google Play Store dataset from Kaggle.
 
 This is my first comprehensive end-to-end data analytics project that explores the the most downloaded apps on Google Play Store.
 
