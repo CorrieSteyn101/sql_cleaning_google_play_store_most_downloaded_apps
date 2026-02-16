@@ -1,0 +1,41 @@
+CREATE TABLE trending_apps_clean AS
+SELECT
+    id,
+    app,
+    developer,
+    category,
+    type,
+    
+    CASE
+        WHEN Downloads LIKE '%10B+%' THEN 10000000000
+        WHEN Downloads LIKE '%5B-10B%' THEN 5000000000
+        WHEN Downloads LIKE '%1B-5B%' THEN 1000000000
+        WHEN Downloads LIKE '%500M%' THEN 500000000
+        WHEN Downloads LIKE '%10M+%' THEN 10000000
+        WHEN Downloads LIKE '%5M-10M%' THEN 5000000
+        WHEN Downloads LIKE '%1M-5M%' THEN 1000000
+        ELSE 0
+    END AS clean_downloads,
+
+    CASE
+        WHEN pre_installed LIKE '%Yes%' THEN 1
+        WHEN pre_installed LIKE '%No%' THEN 0
+        ELSE NULL
+    END AS pre_installed,
+
+    CASE
+        WHEN price IS NULL OR price = 'Free' THEN 0
+        ELSE REPLACE(price, '$', '')
+    END AS price,
+
+    CASE 
+        WHEN date_reached = 'Unknown' OR date_reached = '' THEN NULL
+        ELSE STR_TO_DATE(date_reached, '%Y-%m-%d')
+    END AS date_reached,
+
+    CASE 
+        WHEN date_published = 'Unknown' OR date_published = '' THEN NULL
+        ELSE STR_TO_DATE(date_published, '%Y-%m-%d')
+    END AS date_published
+
+FROM trending_apps;

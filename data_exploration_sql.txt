@@ -1,0 +1,28 @@
+-- Understand Table Structure
+DESC trending_apps;
+
+-- Check total number of records
+SELECT COUNT(*) FROM trending_apps;
+
+-- Identify duplicate apps
+SELECT app, COUNT(*)
+FROM trending_apps
+GROUP BY app
+HAVING COUNT(*) > 1;
+
+-- Check for empty strings
+SELECT COUNT(*)
+FROM trending_apps
+WHERE downloads = '';
+
+-- App Count by Category
+SELECT category, COUNT(*) AS total_apps
+FROM trending_apps
+GROUP BY category
+ORDER BY total_apps DESC;
+
+-- Compare Free vs Paid Apps
+SELECT price, COUNT(*) AS contrapose
+FROM trending_apps
+GROUP BY price
+ORDER BY count_apps DESC;
