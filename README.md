@@ -27,5 +27,4 @@ Designing and building a dashboard on Google Play Store's most downloaded apps t
 
 <img width="1152" height="648" alt="image" src="https://github.com/user-attachments/assets/c156c1e0-a704-4cce-b9da-96df584b7a92" />
 
-### 🔍 Summary Insights
 
